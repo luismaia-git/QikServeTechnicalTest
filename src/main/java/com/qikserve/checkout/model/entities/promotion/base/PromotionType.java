@@ -1,4 +1,4 @@
-package com.qikserve.checkout.entities.promotion;
+package com.qikserve.checkout.model.entities.promotion.base;
 
 public enum PromotionType {
     FLAT_PERCENT,
