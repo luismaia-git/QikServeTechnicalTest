@@ -48,4 +48,10 @@ public class CheckoutServiceImpl implements ICheckoutService {
         //revisar
         return new CartSummary(cartDto.getId()+1, cartDto.getId(), cartItems, totalCost, totalSavings, totalSavings.add(totalCost));
     }
+
+    public Product getProductById(String productId){
+        return productRepository.findById(productId);
+    }
+
+
 }
