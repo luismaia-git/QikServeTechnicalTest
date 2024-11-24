@@ -1,7 +1,8 @@
-package com.qikserve.checkout.model.entities.promotion.implementations;
+package com.qikserve.checkout.model.dto.promotion.implementations;
 
-import com.qikserve.checkout.model.entities.promotion.base.AbstractPromotion;
-import com.qikserve.checkout.model.entities.promotion.base.PromotionType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.qikserve.checkout.model.dto.promotion.base.AbstractPromotion;
+import com.qikserve.checkout.model.dto.promotion.base.PromotionType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,7 +13,11 @@ import java.math.BigDecimal;
 public class BuyXGetYFreePromotion extends AbstractPromotion {
     private final String id;
     private final PromotionType type = PromotionType.BUY_X_GET_Y_FREE;
+
+    @JsonProperty("required_qty")
     private final int requiredQty;
+
+    @JsonProperty("free_qty")
     private final int freeQty;
 
     @Override

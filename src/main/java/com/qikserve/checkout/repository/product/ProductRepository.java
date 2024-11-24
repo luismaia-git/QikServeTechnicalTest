@@ -1,6 +1,6 @@
 package com.qikserve.checkout.repository.product;
 
-import com.qikserve.checkout.model.entities.product.Product;
+import com.qikserve.checkout.model.dto.product.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

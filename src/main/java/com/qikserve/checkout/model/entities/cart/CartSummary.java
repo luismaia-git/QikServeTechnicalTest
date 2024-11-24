@@ -3,7 +3,8 @@ package com.qikserve.checkout.model.entities.cart;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -23,15 +24,17 @@ public class CartSummary {
     @Column(name = "cart_id", nullable = false)
     private Long cartId;
 
-    @Transient
-    private List<CartItem> items;
+    @ElementCollection
+    private List<String> items;
 
-    @Column(nullable = false)
-    private BigDecimal totalCost;
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "totalPrice", column = @Column(name = "total_price")),
+        @AttributeOverride(name = "totalSavings", column = @Column(name = "total_savings")),
+        @AttributeOverride(name = "totalPriceFinal", column = @Column(name = "total_price_final"))
+    })
+    private Savings savings;
 
-    @Column(nullable = false)
-    private BigDecimal savings;
-
-    @Transient
-    private BigDecimal totalPayable;
+    @Column(name = "checkout_date", nullable = false)
+    private LocalDateTime checkoutDate;
 }

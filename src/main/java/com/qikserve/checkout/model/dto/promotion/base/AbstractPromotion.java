@@ -1,10 +1,10 @@
-package com.qikserve.checkout.model.entities.promotion.base;
+package com.qikserve.checkout.model.dto.promotion.base;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.qikserve.checkout.model.entities.promotion.implementations.BuyXGetYFreePromotion;
-import com.qikserve.checkout.model.entities.promotion.implementations.FlatPercentPromotion;
-import com.qikserve.checkout.model.entities.promotion.implementations.QtyBasedPriceOverridePromotion;
+import com.qikserve.checkout.model.dto.promotion.implementations.BuyXGetYFreePromotion;
+import com.qikserve.checkout.model.dto.promotion.implementations.FlatPercentPromotion;
+import com.qikserve.checkout.model.dto.promotion.implementations.QtyBasedPriceOverridePromotion;
 import jakarta.persistence.*;
 import lombok.Data;
 

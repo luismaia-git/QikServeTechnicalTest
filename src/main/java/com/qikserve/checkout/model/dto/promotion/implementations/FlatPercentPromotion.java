@@ -1,7 +1,7 @@
-package com.qikserve.checkout.model.entities.promotion.implementations;
+package com.qikserve.checkout.model.dto.promotion.implementations;
 
-import com.qikserve.checkout.model.entities.promotion.base.AbstractPromotion;
-import com.qikserve.checkout.model.entities.promotion.base.PromotionType;
+import com.qikserve.checkout.model.dto.promotion.base.AbstractPromotion;
+import com.qikserve.checkout.model.dto.promotion.base.PromotionType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

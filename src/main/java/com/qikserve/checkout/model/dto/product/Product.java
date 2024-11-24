@@ -1,6 +1,6 @@
-package com.qikserve.checkout.model.entities.product;
+package com.qikserve.checkout.model.dto.product;
 
-import com.qikserve.checkout.model.entities.promotion.base.AbstractPromotion;
+import com.qikserve.checkout.model.dto.promotion.base.AbstractPromotion;
 import jakarta.persistence.*;
 import lombok.*;
 

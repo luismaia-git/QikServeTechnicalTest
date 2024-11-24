@@ -2,6 +2,7 @@ package com.qikserve.checkout.model.entities.cart;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 @Builder
@@ -17,6 +18,10 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id", insertable = false, updatable = false)
+    private Cart cart;
+
     @Column(name = "cart_id", nullable = false)
     private Long cartId;
 
@@ -24,6 +29,8 @@ public class CartItem {
     private String productId;
 
     @Column(nullable = false)
+    @Min(value = 1, message = "Quantity must be greater than 0")
     private int quantity;
+
 
 }
