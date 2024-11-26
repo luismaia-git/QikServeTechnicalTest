@@ -1,13 +1,11 @@
 package com.qikserve.checkout.controller;
 
 import com.qikserve.checkout.model.entities.cart.CartItem;
-import com.qikserve.checkout.service.cart.ICartItemService;
+import com.qikserve.checkout.service.cart.item.ICartItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/cartItem")

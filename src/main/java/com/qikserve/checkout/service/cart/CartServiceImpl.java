@@ -1,8 +1,10 @@
 package com.qikserve.checkout.service.cart;
 
 
-import com.qikserve.checkout.exception.cart.CartItemNotFoundException;
-import com.qikserve.checkout.exception.cart.CartNotFoundException;
+import com.qikserve.checkout.exception.cart.CartAlreadyCheckedOutException;
+import com.qikserve.checkout.exception.cart.CartNotOpenException;
+import com.qikserve.checkout.exception.cart.notfound.CartItemNotFoundException;
+import com.qikserve.checkout.exception.cart.notfound.CartNotFoundException;
 import com.qikserve.checkout.model.dto.promotion.base.AbstractPromotion;
 import com.qikserve.checkout.model.entities.cart.*;
 import com.qikserve.checkout.model.dto.product.Product;
@@ -40,7 +42,7 @@ public class CartServiceImpl implements ICartService {
         Cart cart = this.getCartById(cartId);
 
         if(!cart.getStatus().equals(CartStatus.OPEN)){
-            throw new IllegalArgumentException("Cart with id " + cartId + " is not open");
+            throw new CartNotOpenException(cartId);
         }
         cartItemRepository.save(cartItem);
     }
@@ -50,19 +52,19 @@ public class CartServiceImpl implements ICartService {
         Cart cart = this.getCartById(cartId);
 
         if(!cart.getStatus().equals(CartStatus.OPEN)){
-            throw new IllegalArgumentException("Cart with id " + cartId + " is not open");
+            throw new CartNotOpenException(cartId);
         }
 
-        CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(CartItemNotFoundException::new);
+        CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(() -> new CartItemNotFoundException(cartItemId));
         cartItemRepository.delete(cartItem);
     }
 
     public CartSummary checkout(Long cartId) {
 
-        Cart cartFinded = this.getCartById(cartId);
+        Cart cartFound = this.getCartById(cartId);
 
-        if(cartFinded.getStatus().equals(CartStatus.CHECKOUT)){
-            throw new IllegalArgumentException("Cart with id " + cartId + " is already checked out");
+        if(cartFound.getStatus().equals(CartStatus.CHECKOUT)){
+            throw new CartAlreadyCheckedOutException(cartFound.getId());
         }
 
         updateStatusCart(cartId, CartStatus.CHECKOUT);
@@ -124,7 +126,7 @@ public class CartServiceImpl implements ICartService {
     }
 
     public Cart getCartById (Long cartId) {
-        return cartRepository.findById(cartId).orElseThrow(CartNotFoundException::new);
+        return cartRepository.findById(cartId).orElseThrow( () -> new CartNotFoundException(cartId));
     }
 
     public void updateStatusCart(Long cartId, CartStatus status){

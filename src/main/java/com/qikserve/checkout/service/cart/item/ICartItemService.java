@@ -1,4 +1,4 @@
-package com.qikserve.checkout.service.cart;
+package com.qikserve.checkout.service.cart.item;
 
 import com.qikserve.checkout.model.entities.cart.*;
 
