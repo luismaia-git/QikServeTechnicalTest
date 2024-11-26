@@ -1,6 +1,5 @@
 package com.qikserve.checkout.model.entities.cart;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.*;

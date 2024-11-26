@@ -2,11 +2,7 @@ package com.qikserve.checkout.model.entities.cart;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-
 import java.time.LocalDateTime;
-import java.util.List;
-
 
 @Builder
 @Entity
@@ -21,11 +17,12 @@ public class CartSummary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "cart_id", nullable = false)
+    @Column(name = "cart_id", nullable = false, unique = true)
     private Long cartId;
 
-    @ElementCollection
-    private List<String> items;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id", insertable = false, updatable = false)
+    private Cart cart;
 
     @Embedded
     @AttributeOverrides({
@@ -35,6 +32,6 @@ public class CartSummary {
     })
     private Savings savings;
 
-    @Column(name = "checkout_date", nullable = false)
+    @Column(name = "checkout_date" , updatable = false)
     private LocalDateTime checkoutDate;
 }
